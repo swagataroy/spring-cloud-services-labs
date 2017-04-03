@@ -14,27 +14,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @EnableConfigurationProperties(GreetingProperties.class)
 public class GreetingController {
 
-	Logger logger = LoggerFactory.getLogger(GreetingController.class);
+  Logger logger = LoggerFactory.getLogger(GreetingController.class);
 
-	@Autowired
-	GreetingProperties greetingProperties;
-	
-	@Autowired
-	FortuneService fortuneService;
-	
-	@RequestMapping("/")
-	String getGreeting(Model model){
-		
-		logger.debug("Adding greeting");
-		model.addAttribute("msg", "Greetings!!!");
-		
-		if(greetingProperties.isDisplayFortune()){
-			logger.debug("Adding fortune");
-			model.addAttribute("fortune", fortuneService.getFortune());
-		}
-		
-		//resolves to the greeting.vm velocity template
-		return "greeting";
-	}
+  @Autowired
+  GreetingProperties greetingProperties;
+
+  @Autowired
+  FortuneService fortuneService;
+
+  @RequestMapping("/")
+  String getGreeting(Model model) {
+
+    logger.debug("Adding greeting");
+    model.addAttribute("msg", "Greetings!!!");
+
+    if (greetingProperties.isDisplayFortune()) {
+      logger.debug("Adding fortune");
+      model.addAttribute("fortune", fortuneService.getFortune());
+    }
+
+    //resolves to the greeting.vm velocity template
+    return "greeting";
+  }
 
 }
