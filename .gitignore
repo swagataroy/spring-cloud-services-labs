@@ -1,9 +1,13 @@
 .DS_Store
+
+target
+build
+
 .classpath
 .project
 .settings
-target
 .springbeans
+
 .idea
 *.iml
 
