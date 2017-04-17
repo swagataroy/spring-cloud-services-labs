@@ -30,7 +30,7 @@ public class GreetingController {
     logger.debug("Adding fortune");
     model.addAttribute("fortune", fortune);
 
-    //resolves to the greeting.vm velocity template
+    //resolves to the greeting.ftl template
     return "greeting";
   }
 

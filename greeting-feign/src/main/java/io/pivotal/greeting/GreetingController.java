@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class GreetingController {
 
-  Logger logger = LoggerFactory.getLogger(GreetingController.class);
+  private final Logger logger = LoggerFactory.getLogger(GreetingController.class);
 
-  @Autowired
-  private FortuneServiceClient fortuneServiceClient;
+  private final FortuneServiceClient fortuneServiceClient;
+
+  public GreetingController(FortuneServiceClient fortuneServiceClient) {
+    this.fortuneServiceClient = fortuneServiceClient;
+  }
 
   @RequestMapping("/")
   String getGreeting(Model model) {
@@ -26,7 +29,7 @@ public class GreetingController {
     logger.debug("Adding fortune");
     model.addAttribute("fortune", fortune);
 
-    //resolves to the greeting.vm velocity template
+    //resolves to the greeting.ftl template
     return "greeting";
   }
 

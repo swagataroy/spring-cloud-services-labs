@@ -12,10 +12,13 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class GreetingController {
 
-  Logger logger = LoggerFactory.getLogger(GreetingController.class);
+  private final Logger logger = LoggerFactory.getLogger(GreetingController.class);
 
-  @Autowired
-  private RestTemplate restTemplate;
+  private final RestTemplate restTemplate;
+
+  public GreetingController(RestTemplate restTemplate) {
+    this.restTemplate = restTemplate;
+  }
 
   @RequestMapping("/")
   String getGreeting(Model model) {
@@ -28,7 +31,7 @@ public class GreetingController {
     logger.debug("Adding fortune");
     model.addAttribute("fortune", fortune);
 
-    //resolves to the greeting.vm velocity template
+    //resolves to the greeting.ftl template
     return "greeting";
   }
 
