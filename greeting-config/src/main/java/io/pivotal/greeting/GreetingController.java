@@ -1,10 +1,8 @@
 package io.pivotal.greeting;
 
 import io.pivotal.fortune.FortuneService;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @EnableConfigurationProperties(GreetingProperties.class)
 public class GreetingController {
 
-  Logger logger = LoggerFactory.getLogger(GreetingController.class);
+  private final Logger logger = LoggerFactory.getLogger(GreetingController.class);
 
-  @Autowired
-  GreetingProperties greetingProperties;
+  private final GreetingProperties greetingProperties;
+  private final FortuneService fortuneService;
 
-  @Autowired
-  FortuneService fortuneService;
+  public GreetingController(GreetingProperties greetingProperties, FortuneService fortuneService) {
+    this.greetingProperties = greetingProperties;
+    this.fortuneService = fortuneService;
+  }
 
   @RequestMapping("/")
   String getGreeting(Model model) {

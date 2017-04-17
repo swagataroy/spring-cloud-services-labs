@@ -2,7 +2,6 @@ package io.pivotal.fortune;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,13 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FortuneController {
 
-  Logger logger = LoggerFactory.getLogger(FortuneController.class);
+  private final Logger logger = LoggerFactory.getLogger(FortuneController.class);
 
-  @Autowired
-  private FortuneService fortuneService;
+  private final FortuneService fortuneService;
 
   @Value("${delay.ms:0}")
   private int delayMs = 0;
+
+  public FortuneController(FortuneService fortuneService) {
+    this.fortuneService = fortuneService;
+  }
 
   @RequestMapping("/")
   String getQuote() {
