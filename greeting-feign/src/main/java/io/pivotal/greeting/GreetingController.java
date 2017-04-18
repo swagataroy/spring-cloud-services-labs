@@ -28,8 +28,7 @@ public class GreetingController {
     logger.debug("Adding fortune");
     model.addAttribute("fortune", fortune);
 
-    //resolves to the greeting.ftl template
-    return "greeting";
+    return "greeting"; // resolves to the greeting.ftl template
   }
 
 

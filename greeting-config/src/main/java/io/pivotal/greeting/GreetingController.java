@@ -33,8 +33,7 @@ public class GreetingController {
       model.addAttribute("fortune", fortuneService.getFortune());
     }
 
-    //resolves to the greeting.ftl template
-    return "greeting";
+    return "greeting"; // resolves to the greeting.ftl template
   }
 
 }
