@@ -6,8 +6,7 @@ import org.junit.Test;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class FortuneServiceTest {
 
@@ -20,7 +19,7 @@ public class FortuneServiceTest {
 
   @Test
   public void shouldReturnAFortune() {
-    assertNotNull(fortuneService.getFortune());
+    assertThat(fortuneService.getFortune()).isNotNull();
   }
 
   @Test
@@ -29,6 +28,6 @@ public class FortuneServiceTest {
     for (int i=0; i<1000; i++) {
       fortunes.add(fortuneService.getFortune());
     }
-    assertEquals(4, fortunes.size());
+    assertThat(fortunes.size()).isGreaterThanOrEqualTo(4);
   }
 }
