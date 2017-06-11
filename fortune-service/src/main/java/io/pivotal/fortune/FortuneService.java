@@ -21,7 +21,7 @@ public class FortuneService {
   }
 
   private int randomIndexIntoFortunes() {
-    return random.nextInt(Fortunes.length-1);
+    return random.nextInt(Fortunes.length);
   }
 
 }
