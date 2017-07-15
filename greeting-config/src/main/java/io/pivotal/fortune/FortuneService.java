@@ -7,27 +7,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class FortuneService {
 
+  private static final String[] Fortunes = {
+      "You learn from your mistakes... You will learn a lot today.",
+      "You can always find happiness at work on Friday",
+      "You will be hungry again in one hour.",
+      "Today will be an awesome day!"
+  };
+
+  private Random random = new Random();
+
   public String getFortune() {
-    Random random = new Random();
+    return Fortunes[randomIndexIntoFortunes()];
+  }
 
-    String fortune = null;
-    switch (random.nextInt(3)) {
-
-      case 0:
-        fortune = "You learn from your mistakes... You will learn a lot today.";
-        break;
-      case 1:
-        fortune = "You can always find happiness at work on Friday";
-        break;
-      case 2:
-        fortune = "You will be hungry again in one hour.";
-        break;
-      default:
-        fortune = "Today will be an awesome day!";
-        break;
-    }
-
-    return fortune;
+  private int randomIndexIntoFortunes() {
+    return random.nextInt(Fortunes.length);
   }
 
 }
