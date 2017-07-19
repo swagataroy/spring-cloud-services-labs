@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -27,6 +28,7 @@ public class GreetingControllerTest {
   @Rule
   public WireMockRule wireMockRule = new WireMockRule(wireMockConfig().dynamicPort());
 
+  @Autowired
   private GreetingController controller;
 
   @MockBean
@@ -35,6 +37,7 @@ public class GreetingControllerTest {
   @Before
   public void setup() {
     String stubUrl = String.format("http://localhost:%s/", wireMockRule.port());
+
     stubFor(get(urlEqualTo("/"))
         .willReturn(aResponse()
           .withStatus(200)
@@ -45,8 +48,6 @@ public class GreetingControllerTest {
     InstanceInfo instanceInfo = mock(InstanceInfo.class);
     when(instanceInfo.getHomePageUrl()).thenReturn(stubUrl);
     when(discoveryClient.getNextServerFromEureka(anyString(), anyBoolean())).thenReturn(instanceInfo);
-
-    controller = new GreetingController(discoveryClient);
   }
 
   @Test
