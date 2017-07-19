@@ -53,6 +53,7 @@ public class GreetingControllerTest {
   public void shouldGetGreeting() {
     ExtendedModelMap model = new ExtendedModelMap();
     controller.getGreeting(model);
+    verify(getRequestedFor(urlMatching("/")));
     assertThat(model.get("fortune")).isEqualTo("bachi bouzouk");
   }
 
