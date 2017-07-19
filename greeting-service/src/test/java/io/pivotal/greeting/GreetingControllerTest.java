@@ -51,7 +51,7 @@ public class GreetingControllerTest {
   }
 
   @Test
-  public void shouldGetGreeting() {
+  public void shouldGetFortune() {
     ExtendedModelMap model = new ExtendedModelMap();
     controller.getGreeting(model);
     verify(getRequestedFor(urlMatching("/")));
