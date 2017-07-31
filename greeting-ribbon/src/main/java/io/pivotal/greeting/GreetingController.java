@@ -26,11 +26,10 @@ public class GreetingController {
     logger.debug("Adding greeting");
     model.addAttribute("msg", "Greetings!!!");
 
-
     RestTemplate restTemplate = new RestTemplate();
     String fortune = restTemplate.getForObject(fetchFortuneServiceUrl(), String.class);
 
-    logger.debug("Adding fortune");
+    logger.debug("Adding fortune: {}", fortune);
     model.addAttribute("fortune", fortune);
 
     return "greeting"; // resolves to the greeting.ftl template
