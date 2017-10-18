@@ -22,11 +22,10 @@ public class FortuneController {
 
   @GetMapping("/")
   String getQuote() {
-    logger.debug("fetching fortune.");
-
     artificialDelay();
-
-    return fortuneService.getFortune();
+    String fortune = fortuneService.getFortune();
+    logger.debug("fetching fortune: {}", fortune);
+    return fortune;
   }
 
   private void artificialDelay() {

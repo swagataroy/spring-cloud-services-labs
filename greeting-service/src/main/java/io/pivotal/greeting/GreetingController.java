@@ -36,7 +36,8 @@ public class GreetingController {
   }
 
   private String fetchFortuneServiceUrl() {
-    InstanceInfo instance = discoveryClient.getNextServerFromEureka("FORTUNE-SERVICE", false);
+    InstanceInfo instance =
+        discoveryClient.getNextServerFromEureka("FORTUNE-SERVICE", false);
     logger.debug("instanceID: {}", instance.getId());
 
     String fortuneServiceUrl = instance.getHomePageUrl();
