@@ -2,9 +2,11 @@ package io.pivotal.fortune;
 
 import java.util.Random;
 
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
 @Service
+@RefreshScope
 public class FortuneService {
 
   private static final String[] Fortunes = {

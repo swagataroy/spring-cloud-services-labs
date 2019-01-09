@@ -33,6 +33,10 @@ public class GreetingController {
       model.addAttribute("fortune", fortuneService.getFortune());
     }
 
+    logger.info ("1111"+greetingProperties.getSwagatatesting());
+    logger.debug ("222"+greetingProperties.getSwagatatesting()) ;
+
+
     return "greeting"; // resolves to the greeting.ftl template
   }
 
